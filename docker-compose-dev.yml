@@ -3,7 +3,7 @@ version: '3'
 services:
   db:
     image: postgres
-    restart: always
+    restart: "no"
     environment:
       PGDATA: /var/lib/postgresql/data/pgdata
     volumes:
@@ -23,7 +23,7 @@ services:
       - gbex
   gbex:
     build: .
-    restart: always
+    restart: "no"
     expose:
       - 9000
     privileged: true
