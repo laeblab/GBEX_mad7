@@ -1,0 +1,9 @@
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+log
+shared_volume
+!shared_volume/keep.me
+.idea
+*ipynb_checkpoints/

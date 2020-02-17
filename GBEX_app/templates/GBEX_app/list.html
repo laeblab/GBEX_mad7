@@ -1,0 +1,19 @@
+{% extends 'GBEX_app/app_base.html' %}
+{% load laeb_tags %}
+{% load static %}
+
+{% block content %}
+    <div id="root" />
+{% endblock %}
+{% block page_js_block %}
+    <script>
+        var columns = {{ model_order|safe }};
+        var data = {{ data|safe }};
+        var whodis = "{{ model_name }}";
+    </script>
+    <script src="{% static 'GBEX_app/js/bundle_9_5_0.js' %}"></script>
+{% endblock %}
+
+{% block nav_li_buttons %}
+    {% links model_name %}
+{% endblock %}

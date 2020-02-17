@@ -1,0 +1,8 @@
+<ul class="nav navbar-nav nav-tabs">
+    {% for menu_name, menu_link in menus.items %}
+		<li {% if menu_name == selected_menu %}class="active"{% endif %}><a href="{{ menu_link}}">{{ menu_name }}</a></li>
+    {% endfor %}
+</ul>
+<div style="left: 10%;position: relative; display: inline; font-size: x-large; top: 10px; ">
+    <b>{{ selected_menu }}</b>
+</div>

@@ -1,0 +1,9 @@
+log
+.dockerignore
+.env
+.env_dev
+.env_dev_local
+.gitignore
+docker-compose.yml
+docker-compose-dev.yml
+README.md

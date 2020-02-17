@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load laeb_tags %}
+
+{% block app_index_button %}
+    <a class="navbar-brand" href="{% url 'GBEXindex' %}">GBEX</a>
+{% endblock %}
+
+{% block nav_li_buttons %}
+    {% links "" %}
+{% endblock %}

@@ -1,0 +1,38 @@
+version: '3'
+
+services:
+  db:
+    image: postgres
+    restart: always
+    environment:
+      PGDATA: /var/lib/postgresql/data/pgdata
+    volumes:
+      - pgdata:/var/lib/postgresql/data/pgdata
+    env_file:
+      - .env_dev
+  nginx:
+    image: nginx
+    restart: always
+    ports:
+      - "80:80"
+    volumes:
+      - ./shared_volume:/shared                 # for media and static file serving
+      - ./log/nginx:/var/log/nginx              # for logging
+      - ./nginx/dev:/etc/nginx/conf.d           # nginx config
+    depends_on:
+      - gbex
+  gbex:
+    build: .
+    restart: always
+    expose:
+      - 9000
+    privileged: true
+    command: bash -c "python manage.py migrate --noinput && python manage.py createinitialrevisions && python manage.py collectstatic --noinput && chmod -R 777 /code/shared/static && mkdir -p /code/shared/uploads && chmod -R 777 /code/shared/uploads && uwsgi --ini uwsgi.ini"
+    volumes:
+      - ./shared_volume:/code/shared
+    depends_on:
+      - db
+    env_file:
+      - .env_dev
+volumes:
+  pgdata:
