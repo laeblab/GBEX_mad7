@@ -29,21 +29,6 @@ function sortByColumn(sortDirection: string, sortColumn: number, data: Array<Arr
 			first = b[sortColumn];
 			second = a[sortColumn];
 		}
-		if (sortColumn === 1) { // special case for name column, sort by the number that all names have...not very generic, but this project is deprecated so I don't care
-			// try to get a number of the end of the string, but if none exist, then just use the id columns
-			let noone = first.match(/[0-9]+$/);
-			let notwo = second.match(/[0-9]+$/);
-			if (Array.isArray(noone) && Array.isArray(notwo)) {
-				first = parseInt(noone[0]);
-				second = parseInt(notwo[0]);
-			} else if (sortDirection === "DESC") {
-				first = b[0];
-				second = a[0];
-			} else {
-				first = a[0];
-				second = b[0];
-			}
-		}
 
 		if (first < second) {
 			return -1

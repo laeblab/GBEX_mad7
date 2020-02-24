@@ -8,9 +8,6 @@ Hosted on mad7.ebdrup.biosustain.dtu.dk
 - Upload final data 
 #### Bugs/fixes
 - update default column sizes
-- whats with the ordering?
-- cant select text
-- files aren't presented as links
 #### Objects missing
 - Plasmids
     - Mammalian expression vectors

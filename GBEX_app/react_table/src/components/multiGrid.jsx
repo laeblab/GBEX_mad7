@@ -150,7 +150,7 @@ export default class RVMultiGrid extends React.PureComponent<Props, State> {
     }
 
     // check if file column
-    if (colname.includes("file")) {
+    if (colname.toLowerCase().includes("file")) {
       val = <a href={"/downloads/" + val}>{val.slice(val.lastIndexOf("/")+1)}</a>
     }
 
@@ -158,7 +158,7 @@ export default class RVMultiGrid extends React.PureComponent<Props, State> {
       <div
         className={cn}
         key={key}
-        onClick={() => this._selectCell({ cursorColumn: columnIndex, cursorRow: rowIndex, scrollToColumn: columnIndex, scrollToRow: rowIndex })}
+        //onClick={() => this._selectCell({ cursorColumn: columnIndex, cursorRow: rowIndex, scrollToColumn: columnIndex, scrollToRow: rowIndex })}
         style={style}
         > {val}
       </div>
