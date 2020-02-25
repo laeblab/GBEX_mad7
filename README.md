@@ -11,10 +11,18 @@ Hosted on mad7.ebdrup.biosustain.dtu.dk
 #### Objects missing
 - Plasmids
     - Mammalian expression vectors
+        - 4x NLS
     - gRNA plasmids
+        - BGN1
+        - BGN2
+        - BGN3
+        - BGN4
+        - Timp1_1
+        - Timp1_2
+        - Timp1_3
+        - Timp1_4
 - Raw Results
     - 2x NGS runs
-    - Maybe gels?
 - Experiments
     - RNP experiment
     - Plasmid experiment

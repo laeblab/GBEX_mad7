@@ -7,7 +7,6 @@ from GBEX_app.helpers import get_upload_path
 default_order = ['id', 'name', 'responsible']
 
 
-# Base model to capture shared fields
 class GBEXModelBase(models.Model):
 	name = models.TextField(unique=True)
 	responsible = models.ForeignKey(User, on_delete=models.PROTECT, null=True, blank=True)
@@ -40,7 +39,6 @@ class Oligo(GBEXModelBase):
 	Sequence = models.TextField()
 
 	order = [*default_order, 'Usage', 'OligoType', 'Sequence']
-	symbol = "Ol"
 	menu_label = "Oligos"
 
 
@@ -50,7 +48,6 @@ class Plasmid(GBEXModelBase):
 
 	menu_label = "Plasmids"
 	order = [*default_order, 'Usage', 'GenbankFile']
-	symbol = "Pl"
 
 
 ResultType = [
@@ -61,10 +58,10 @@ ResultType = [
 class RawResult(GBEXModelBase):
 	Description = models.TextField()
 	ResultType = models.CharField(choices=ResultType, max_length=10)
+	DataFile = ResumableFileField(blank=True, null=True, upload_to=get_upload_path, max_length=500)
 
 	menu_label = "Raw Results"
-	order = [*default_order, "Description", "ResultType"]
-	symbol = "R"
+	order = [*default_order, "Description", "ResultType", 'DataFile']
 
 
 class Experiment(GBEXModelBase):
@@ -75,7 +72,7 @@ class Experiment(GBEXModelBase):
 
 	menu_label = "Experiments"
 	order = [*default_order, "Description", "Oligos", "Plasmids", "Results"]
-	symbol = "E"
+
 	col_display_func_dict = {
 		'Oligos': lambda item: ", ".join(ab.name for ab in item.Oligos.all()) if item.Oligos.all() else "",
 		'Plasmids': lambda item: ", ".join(ab.name for ab in item.Plasmids.all()) if item.Plasmids.all() else "",
