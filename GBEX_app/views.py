@@ -1,3 +1,5 @@
+from io import BytesIO
+
 from django.apps import apps
 from django.http import HttpResponse
 from django.views.generic import TemplateView, View
@@ -6,7 +8,6 @@ from django.views.generic.base import TemplateResponseMixin, ContextMixin
 from openpyxl import Workbook
 from openpyxl.utils import get_column_letter
 from openpyxl.worksheet.table import Table, TableStyleInfo
-from openpyxl.writer.excel import save_virtual_workbook
 
 from GBEX_app.helpers import model_to_list_list
 
@@ -70,8 +71,10 @@ class ExcelExportView(View):
 		tab.tableStyleInfo = style
 		ws.add_table(tab)
 
+		buffer = BytesIO()
+		wb.save(buffer)
 		response = HttpResponse(
-			save_virtual_workbook(wb),
+			buffer.getvalue(),
 			content_type='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet')
 		response['Content-Disposition'] = 'attachment; filename="export.xlsx"'
 		return response
