@@ -1,7 +1,9 @@
+from django.contrib.admin.views.decorators import staff_member_required
 from django.http import HttpResponse
 from .files import ResumableFile, get_storage
 
 
+@staff_member_required
 def resumable_upload(request):
 	storage = get_storage(request)
 	if request.method == 'POST':
